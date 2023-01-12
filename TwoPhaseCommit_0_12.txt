@@ -1,0 +1,156 @@
+<TestLog> Running test 'PImplementation.Test2.Execute'.
+<CreateLog> Progress was created.
+<MonitorLog> Progress enters state 'Init_3'.
+<CreateLog> Plang.CSharpRuntime._GodMachine(1) was created by task '2'.
+<CreateLog> PImplementation.TestDriverWithFailure(2) was created by Plang.CSharpRuntime._GodMachine(1).
+<StateLog> PImplementation.TestDriverWithFailure(2) enters state 'Init_5'.
+<CreateLog> Participant(3) was created by PImplementation.TestDriverWithFailure(2).
+<StateLog> Participant(3) enters state 'Init_1'.
+<GotoLog> Participant(3) is transitioning from state 'Init_1' to state 'WaitForRequests'.
+<StateLog> Participant(3) exits state 'Init_1'.
+<StateLog> Participant(3) enters state 'WaitForRequests'.
+<CreateLog> Participant(4) was created by PImplementation.TestDriverWithFailure(2).
+<CreateLog> Participant(5) was created by PImplementation.TestDriverWithFailure(2).
+<StateLog> Participant(5) enters state 'Init_1'.
+<GotoLog> Participant(5) is transitioning from state 'Init_1' to state 'WaitForRequests'.
+<StateLog> Participant(5) exits state 'Init_1'.
+<StateLog> Participant(5) enters state 'WaitForRequests'.
+<StateLog> Participant(4) enters state 'Init_1'.
+<GotoLog> Participant(4) is transitioning from state 'Init_1' to state 'WaitForRequests'.
+<StateLog> Participant(4) exits state 'Init_1'.
+<StateLog> Participant(4) enters state 'WaitForRequests'.
+<CreateLog> Coordinator(6) was created by PImplementation.TestDriverWithFailure(2).
+<StateLog> Coordinator(6) enters state 'Init'.
+<CreateLog> Client(7) was created by PImplementation.TestDriverWithFailure(2).
+<StateLog> Client(7) enters state 'Init_6'.
+<GotoLog> Client(7) is transitioning from state 'Init_6' to state 'SendWriteTransaction'.
+<StateLog> Client(7) exits state 'Init_6'.
+<StateLog> Client(7) enters state 'SendWriteTransaction'.
+<MonitorLog> PImplementation.Progress is processing event 'PImplementation.eWriteTransReq' in state 'Init_3'.
+<MonitorLog> Progress exits state 'Init_3'.
+<MonitorLog> Progress enters hot state 'WaitForResponses'.
+<CreateLog> Timer(8) was created by Coordinator(6).
+<GotoLog> Coordinator(6) is transitioning from state 'Init' to state 'WaitForTransactions'.
+<StateLog> Coordinator(6) exits state 'Init'.
+<StateLog> Coordinator(6) enters state 'WaitForTransactions'.
+<CreateLog> Client(9) was created by PImplementation.TestDriverWithFailure(2).
+<CreateLog> FailureInjector(10) was created by PImplementation.TestDriverWithFailure(2).
+<StateLog> FailureInjector(10) enters state 'Init_7'.
+<SendLog> 'FailureInjector(10)' in state 'Init_7' sent event 'PHalt' to 'Participant(5)'.
+<StateLog> Timer(8) enters state 'Init_8'.
+<GotoLog> Timer(8) is transitioning from state 'Init_8' to state 'WaitForTimerRequests'.
+<StateLog> Timer(8) exits state 'Init_8'.
+<StateLog> Timer(8) enters state 'WaitForTimerRequests'.
+<StateLog> Client(9) enters state 'Init_6'.
+<GotoLog> Client(9) is transitioning from state 'Init_6' to state 'SendWriteTransaction'.
+<StateLog> Client(9) exits state 'Init_6'.
+<StateLog> Client(9) enters state 'SendWriteTransaction'.
+<MonitorLog> PImplementation.Progress is processing event 'PImplementation.eWriteTransReq' in state 'WaitForResponses'.
+<SendLog> 'Client(9)' in state 'SendWriteTransaction' sent event 'eWriteTransReq with payload (<client:Client(9), rec:<key:3, val:74, >, >)' to 'Coordinator(6)'.
+<DequeueLog> 'Participant(5)' dequeued event 'PHalt' in state 'WaitForRequests'.
+<StateLog> Participant(5) exits state 'WaitForRequests'.
+<PopLog> 'Participant(5)' popped with unhandled event 'PHalt' and reentered state 'WaitForRequests.
+<ExceptionLog> Participant(5) running action '' in state 'WaitForRequests' threw exception 'UnhandledEventException'.
+<ExceptionLog> Participant(5) running action '' in state 'WaitForRequests' chose to handle exception 'UnhandledEventException'.
+<HaltLog> Participant(5) halted with 0 events in its inbox.
+<DequeueLog> 'Coordinator(6)' dequeued event 'eWriteTransReq with payload (<client:Client(9), rec:<key:3, val:74, >, >)' in state 'WaitForTransactions'.
+<SendLog> 'Coordinator(6)' in state 'WaitForTransactions' sent event 'ePrepareReq with payload (<coordinator:Coordinator(6), transId:1, rec:<key:3, val:74, >, >)' to 'Participant(3)'.
+<DequeueLog> 'Participant(3)' dequeued event 'ePrepareReq with payload (<coordinator:Coordinator(6), transId:1, rec:<key:3, val:74, >, >)' in state 'WaitForRequests'.
+<SendLog> 'Client(7)' in state 'SendWriteTransaction' sent event 'eWriteTransReq with payload (<client:Client(7), rec:<key:40, val:94, >, >)' to 'Coordinator(6)'.
+<SendLog> 'Coordinator(6)' in state 'WaitForTransactions' sent event 'ePrepareReq with payload (<coordinator:Coordinator(6), transId:1, rec:<key:3, val:74, >, >)' to 'Participant(4)'.
+<SendLog> 'Coordinator(6)' in state 'WaitForTransactions' sent event 'ePrepareReq with payload (<coordinator:Coordinator(6), transId:1, rec:<key:3, val:74, >, >)' to 'Participant(5)' which has halted.
+<SendLog> 'Participant(3)' in state 'WaitForRequests' sent event 'ePrepareResp with payload (<participant:Participant(3), transId:1, status:1, >)' to 'Coordinator(6)'.
+<DequeueLog> 'Participant(4)' dequeued event 'ePrepareReq with payload (<coordinator:Coordinator(6), transId:1, rec:<key:3, val:74, >, >)' in state 'WaitForRequests'.
+<SendLog> 'Participant(4)' in state 'WaitForRequests' sent event 'ePrepareResp with payload (<participant:Participant(4), transId:1, status:0, >)' to 'Coordinator(6)'.
+<SendLog> 'Coordinator(6)' in state 'WaitForTransactions' sent event 'eStartTimer' to 'Timer(8)'.
+<GotoLog> Coordinator(6) is transitioning from state 'WaitForTransactions' to state 'WaitForPrepareResponses'.
+<StateLog> Coordinator(6) exits state 'WaitForTransactions'.
+<StateLog> Coordinator(6) enters state 'WaitForPrepareResponses'.
+<DequeueLog> 'Coordinator(6)' dequeued event 'ePrepareResp with payload (<participant:Participant(3), transId:1, status:1, >)' in state 'WaitForPrepareResponses'.
+<DequeueLog> 'Timer(8)' dequeued event 'eStartTimer' in state 'WaitForTimerRequests'.
+<SendLog> 'Timer(8)' in state 'WaitForTimerRequests' sent event 'eTimeOut' to 'Coordinator(6)'.
+<SendLog> 'Coordinator(6)' in state 'WaitForPrepareResponses' sent event 'eAbortTrans with payload (1)' to 'Participant(3)'.
+<DequeueLog> 'Participant(3)' dequeued event 'eAbortTrans with payload (1)' in state 'WaitForRequests'.
+<SendLog> 'Coordinator(6)' in state 'WaitForPrepareResponses' sent event 'eAbortTrans with payload (1)' to 'Participant(4)'.
+<DequeueLog> 'Participant(4)' dequeued event 'eAbortTrans with payload (1)' in state 'WaitForRequests'.
+<SendLog> 'Coordinator(6)' in state 'WaitForPrepareResponses' sent event 'eAbortTrans with payload (1)' to 'Participant(5)' which has halted.
+<MonitorLog> PImplementation.Progress is processing event 'PImplementation.eWriteTransResp' in state 'WaitForResponses'.
+<SendLog> 'Coordinator(6)' in state 'WaitForPrepareResponses' sent event 'eWriteTransResp with payload (<transId:1, status:1, >)' to 'Client(9)'.
+<DequeueLog> 'Client(9)' dequeued event 'eWriteTransResp with payload (<transId:1, status:1, >)' in state 'SendWriteTransaction'.
+<GotoLog> Client(9) is transitioning from state 'SendWriteTransaction' to state 'ConfirmTransaction'.
+<StateLog> Client(9) exits state 'SendWriteTransaction'.
+<StateLog> Client(9) enters state 'ConfirmTransaction'.
+<SendLog> 'Coordinator(6)' in state 'WaitForPrepareResponses' sent event 'eCancelTimer' to 'Timer(8)'.
+<ReceiveLog> Coordinator(6) is waiting to dequeue an event of type 'PImplementation.eCancelTimerSuccess' or 'PImplementation.eCancelTimerFailed' in state 'WaitForPrepareResponses'.
+<DequeueLog> 'Timer(8)' dequeued event 'eCancelTimer' in state 'WaitForTimerRequests'.
+<SendLog> 'Timer(8)' in state 'WaitForTimerRequests' sent event 'eCancelTimerFailed' to 'Coordinator(6)'.
+<ReceiveLog> 'Coordinator(6)' dequeued event 'eCancelTimerFailed' and unblocked in state 'WaitForPrepareResponses'.
+<PrintLog> Timer Cancel Failed!
+<GotoLog> Coordinator(6) is transitioning from state 'WaitForPrepareResponses' to state 'WaitForTransactions'.
+<StateLog> Coordinator(6) exits state 'WaitForPrepareResponses'.
+<StateLog> Coordinator(6) enters state 'WaitForTransactions'.
+<SendLog> 'Client(9)' in state 'ConfirmTransaction' sent event 'eReadTransReq with payload (<client:Client(9), key:3, >)' to 'Coordinator(6)'.
+<ReceiveLog> Client(9) is waiting to dequeue an event of type 'PImplementation.eReadTransResp' in state 'ConfirmTransaction'.
+<DequeueLog> 'Coordinator(6)' dequeued event 'eWriteTransReq with payload (<client:Client(7), rec:<key:40, val:94, >, >)' in state 'WaitForTransactions'.
+<SendLog> 'Coordinator(6)' in state 'WaitForTransactions' sent event 'ePrepareReq with payload (<coordinator:Coordinator(6), transId:2, rec:<key:40, val:94, >, >)' to 'Participant(3)'.
+<DequeueLog> 'Participant(3)' dequeued event 'ePrepareReq with payload (<coordinator:Coordinator(6), transId:2, rec:<key:40, val:94, >, >)' in state 'WaitForRequests'.
+<SendLog> 'Participant(3)' in state 'WaitForRequests' sent event 'ePrepareResp with payload (<participant:Participant(3), transId:2, status:1, >)' to 'Coordinator(6)'.
+<SendLog> 'Coordinator(6)' in state 'WaitForTransactions' sent event 'ePrepareReq with payload (<coordinator:Coordinator(6), transId:2, rec:<key:40, val:94, >, >)' to 'Participant(4)'.
+<SendLog> 'Coordinator(6)' in state 'WaitForTransactions' sent event 'ePrepareReq with payload (<coordinator:Coordinator(6), transId:2, rec:<key:40, val:94, >, >)' to 'Participant(5)' which has halted.
+<DequeueLog> 'Participant(4)' dequeued event 'ePrepareReq with payload (<coordinator:Coordinator(6), transId:2, rec:<key:40, val:94, >, >)' in state 'WaitForRequests'.
+<SendLog> 'Coordinator(6)' in state 'WaitForTransactions' sent event 'eStartTimer' to 'Timer(8)'.
+<GotoLog> Coordinator(6) is transitioning from state 'WaitForTransactions' to state 'WaitForPrepareResponses'.
+<StateLog> Coordinator(6) exits state 'WaitForTransactions'.
+<StateLog> Coordinator(6) enters state 'WaitForPrepareResponses'.
+<DequeueLog> 'Timer(8)' dequeued event 'eStartTimer' in state 'WaitForTimerRequests'.
+<SendLog> 'Participant(4)' in state 'WaitForRequests' sent event 'ePrepareResp with payload (<participant:Participant(4), transId:2, status:0, >)' to 'Coordinator(6)'.
+<DequeueLog> 'Coordinator(6)' dequeued event 'ePrepareResp with payload (<participant:Participant(4), transId:1, status:0, >)' in state 'WaitForPrepareResponses'.
+<DequeueLog> 'Coordinator(6)' dequeued event 'eTimeOut' in state 'WaitForPrepareResponses'.
+<GotoLog> Coordinator(6) is transitioning from state 'WaitForPrepareResponses' to state 'WaitForTransactions'.
+<StateLog> Coordinator(6) exits state 'WaitForPrepareResponses'.
+<SendLog> 'Coordinator(6)' in state 'WaitForPrepareResponses' sent event 'eAbortTrans with payload (2)' to 'Participant(3)'.
+<DequeueLog> 'Participant(3)' dequeued event 'eAbortTrans with payload (2)' in state 'WaitForRequests'.
+<SendLog> 'Coordinator(6)' in state 'WaitForPrepareResponses' sent event 'eAbortTrans with payload (2)' to 'Participant(4)'.
+<DequeueLog> 'Participant(4)' dequeued event 'eAbortTrans with payload (2)' in state 'WaitForRequests'.
+<SendLog> 'Timer(8)' in state 'WaitForTimerRequests' sent event 'eTimeOut' to 'Coordinator(6)'.
+<SendLog> 'Coordinator(6)' in state 'WaitForPrepareResponses' sent event 'eAbortTrans with payload (2)' to 'Participant(5)' which has halted.
+<MonitorLog> PImplementation.Progress is processing event 'PImplementation.eWriteTransResp' in state 'WaitForResponses'.
+<MonitorLog> Monitor 'Progress' raised event 'GotoStateEvent' in state 'WaitForResponses'.
+<MonitorLog> Progress exits hot state 'WaitForResponses'.
+<MonitorLog> Progress enters cold state 'AllTransactionsFinished'.
+<SendLog> 'Coordinator(6)' in state 'WaitForPrepareResponses' sent event 'eWriteTransResp with payload (<transId:2, status:2, >)' to 'Client(7)'.
+<DequeueLog> 'Client(7)' dequeued event 'eWriteTransResp with payload (<transId:2, status:2, >)' in state 'SendWriteTransaction'.
+<GotoLog> Client(7) is transitioning from state 'SendWriteTransaction' to state 'ConfirmTransaction'.
+<StateLog> Client(7) exits state 'SendWriteTransaction'.
+<StateLog> Client(7) enters state 'ConfirmTransaction'.
+<SendLog> 'Coordinator(6)' in state 'WaitForPrepareResponses' sent event 'eCancelTimer' to 'Timer(8)'.
+<ReceiveLog> Coordinator(6) is waiting to dequeue an event of type 'PImplementation.eCancelTimerSuccess' or 'PImplementation.eCancelTimerFailed' in state 'WaitForPrepareResponses'.
+<DequeueLog> 'Timer(8)' dequeued event 'eCancelTimer' in state 'WaitForTimerRequests'.
+<SendLog> 'Timer(8)' in state 'WaitForTimerRequests' sent event 'eCancelTimerFailed' to 'Coordinator(6)'.
+<ReceiveLog> 'Coordinator(6)' dequeued event 'eCancelTimerFailed' and unblocked in state 'WaitForPrepareResponses'.
+<PrintLog> Timer Cancel Failed!
+<StateLog> Coordinator(6) enters state 'WaitForTransactions'.
+<DequeueLog> 'Coordinator(6)' dequeued event 'eReadTransReq with payload (<client:Client(9), key:3, >)' in state 'WaitForTransactions'.
+<SendLog> 'Coordinator(6)' in state 'WaitForTransactions' sent event 'eReadTransReq with payload (<client:Client(9), key:3, >)' to 'Participant(5)' which has halted.
+<ErrorLog> Deadlock detected. Client(9) is waiting to receive an event, but no other controlled tasks are enabled.
+<StackTrace>    at Microsoft.Coyote.SystematicTesting.OperationScheduler.NotifyAssertionFailure(String text, Boolean killTasks, Boolean cancelExecution)
+   at Microsoft.Coyote.SystematicTesting.OperationScheduler.ScheduleNextEnabledOperation()
+   at Microsoft.Coyote.SystematicTesting.ControlledRuntime.<>c__DisplayClass31_0.<<RunActorEventHandler>b__0>d.MoveNext()
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.Coyote.SystematicTesting.ControlledRuntime.<>c__DisplayClass31_0.<RunActorEventHandler>b__0()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+   at System.Threading.Tasks.Task.ExecuteEntryUnsafe(Thread threadPoolThread)
+   at System.Threading.Tasks.Task.ExecuteFromThreadPool(Thread threadPoolThread)
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading._ThreadPoolWaitCallback.PerformWaitCallback()
+
+<StrategyLog> Found bug using 'random' strategy.
+<StrategyLog> Testing statistics:
+<StrategyLog> Found 1 bug.
+<StrategyLog> Scheduling statistics:
+<StrategyLog> Explored 1 schedule: 1 fair and 0 unfair.
+<StrategyLog> Found 100.00% buggy schedules.
+<StrategyLog> Number of scheduling points in fair terminating schedules: 88 (min), 88 (avg), 88 (max).
