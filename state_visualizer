@@ -5,7 +5,7 @@ import re
 
 column_width = 20
 
-created_re = re.compile("^<CreateLog> (.*) was created.")
+created_re = re.compile("^<CreateLog> (.*) was created.*")
 monitor_enter_re = re.compile("^<MonitorLog> (.*) enters .*state '(.*)'.]")
 state_enter_re = re.compile("^<StateLog> (.*) enters state '(.*)'[.]")
 monitor_exit_re = re.compile("^<MonitorLog> (.*) exits .*state '(.*)'.]")
@@ -26,22 +26,21 @@ cyan = "\x1b[46m"
 white = "\x1b[47m"
 
 def get_machines(lines):
-    machines = []
+    machines = set()
     for line in lines:
         m = created_re.match(line)
         if m is not None:
             machine = m.group(1)
             if not machine.startswith("Plang.CSharpRuntime"):
-                machines.append(machine)
-
-        m = state_enter_re.match(line)
-        if m is None:
+                machines.add(machine)
             continue
-        machine = m.group(1)
-        if not machine.startswith("Plang.CSharpRuntime") and not machine in machines:
-            machines.append(machine)
-
-    return machines
+        m = state_enter_re.match(line)
+        if m is not None:
+            machine = m.group(1)
+            if not machine.startswith("Plang.CSharpRuntime"):
+                machines.add(machine)
+            continue
+    return list(machines)
 
 def print_header(machines):
     first = True
