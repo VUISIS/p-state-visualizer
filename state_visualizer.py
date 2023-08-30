@@ -2,6 +2,7 @@
 import sys
 import os
 import re
+from functools import cmp_to_key
 
 column_width = 20
 
@@ -25,22 +26,60 @@ magenta = "\x1b[45m"
 cyan = "\x1b[46m"
 white = "\x1b[47m"
 
+def inc_machine_count(counts, mach):
+    if not mach in counts:
+        counts[mach] = 1
+    else:
+        counts[mach] += 1
+
 def get_machines(lines):
-    machines = set()
+    machine_counts = {}
     for line in lines:
         m = created_re.match(line)
         if m is not None:
             machine = m.group(1)
             if not machine.startswith("Plang.CSharpRuntime"):
-                machines.add(machine)
+                inc_machine_count(machine_counts, machine)
             continue
         m = state_enter_re.match(line)
         if m is not None:
             machine = m.group(1)
             if not machine.startswith("Plang.CSharpRuntime"):
-                machines.add(machine)
+                inc_machine_count(machine_counts, machine)
             continue
-    return list(machines)
+        m = state_exit_re.match(line)
+        if m is not None:
+            machine = m.group(1)
+            if not machine.startswith("Plang.CSharpRuntime"):
+                inc_machine_count(machine_counts, machine)
+            continue
+        m = send_re.match(line)
+        if m is not None:
+            machine = m.group(1)
+            if not machine.startswith("Plang.CSharpRuntime"):
+                inc_machine_count(machine_counts, machine)
+            continue
+        m = dequeue_re.match(line)
+        if m is not None:
+            machine = m.group(1)
+            if not machine.startswith("Plang.CSharpRuntime"):
+                inc_machine_count(machine_counts, machine)
+            continue
+        m = monitor_enter_re.match(line)
+        if m is not None:
+            machine = m.group(1)
+            if not machine.startswith("Plang.CSharpRuntime"):
+                inc_machine_count(machine_counts, machine)
+            continue
+        m = monitor_exit_re.match(line)
+        if m is not None:
+            machine = m.group(1)
+            if not machine.startswith("Plang.CSharpRuntime"):
+                inc_machine_count(machine_counts, machine)
+            continue
+    machines = list(machine_counts.keys())
+    machines = sorted(machines, key=cmp_to_key(lambda x,y: machine_counts[y] - machine_counts[x]))
+    return machines
 
 def print_header(machines):
     first = True
